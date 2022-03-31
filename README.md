@@ -1,1 +1,3 @@
-# SQL-CHALLANGE
+# SQL-CHALLENGE
+
+Questions n Solutions
