@@ -40,8 +40,13 @@ JOIN actor ON actor.actor_id = film_actor.actor_id
 GROUP BY film_actor.actor_id ORDER BY COUNT(DISTINCT film_id) DESC LIMIT 1;
 
 # Q14. When is 'Academy Dinosaur' due?
-SELECT release_year FROM film WHERE title = 'ACADEMY DINOSAUR';
-    
+SELECT film.title, DATE_ADD(rental.rental_date, INTERVAL film.rental_duration DAY)
+FROM film
+JOIN inventory ON film.film_id = inventory.film_id
+JOIN rental ON rental.inventory_id = inventory.inventory_id
+WHERE film.title = "Academy Dinosaur"
+AND rental.return_date IS NULL;
+
 # Q15. What is the average runtime of all films?
 SELECT AVG(length) FROM film;
 
